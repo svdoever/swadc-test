@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/azure-functions/python:4-python3.9-core-tools
 COPY library-scripts/*.sh library-scripts/*.env /tmp/library-scripts/
 
 # Install Node.js, Azure Static Web Apps CLI and Azure Functions Core Tools
-ARG NODE_VERSION="16"
+ARG NODE_VERSION="14.19.0"
 ARG CORE_TOOLS_VERSION="4"
 ENV NVM_DIR="/usr/local/share/nvm" \
     NVM_SYMLINK_CURRENT=true \
@@ -22,4 +22,4 @@ RUN bash /tmp/library-scripts/node-debian.sh "${NVM_DIR}" "${NODE_VERSION}" "${U
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 # [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g rimraf" 2>&1
